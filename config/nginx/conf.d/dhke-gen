@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+## generate dk key
+openssl dhparam -out dhparam.pem 4096
