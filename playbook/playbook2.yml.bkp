@@ -1,0 +1,19 @@
+---
+- hosts: node 
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: copy file to remote host
+      copy:
+        src: /home/ansible/django/
+        dest: /home/ansible/django
+        owner: ansible
+        group: ansible
+        mode: '0755'
+
+    - name: Running Docker-Compose up
+      shell:
+        chdir: /home/ansible/django/
+        cmd: bash run-DC.sh
+
+

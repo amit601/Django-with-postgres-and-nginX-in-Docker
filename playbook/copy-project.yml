@@ -1,0 +1,13 @@
+---
+- hosts: node 
+  gather_facts: yes
+  tasks:
+    - name: copy file to remote host
+      copy:
+        src: /home/ansible/django/
+        dest: /home/ansible/django
+        owner: ansible
+        group: ansible
+        #        mode: '0755'
+
+

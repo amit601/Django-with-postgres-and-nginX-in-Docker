@@ -1,0 +1,12 @@
+---
+- hosts: node 
+  become: true
+  gather_facts: yes
+  tasks:
+
+    - name: Stopping...  Docker-Compose down
+      shell:  
+        chdir: /home/ansible/django/
+        cmd: bash stop-DC.sh
+
+

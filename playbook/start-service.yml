@@ -1,0 +1,14 @@
+---
+- hosts: node 
+  become: true
+  become_user: root
+  gather_facts: yes
+  tasks:
+
+    - name: Starting  Docker-Compose up
+      shell:  
+        chdir: /home/ansible/django/
+        cmd: bash start-DC.sh
+
+
+    - action: uri url=http://localhost:8000 return_content=no

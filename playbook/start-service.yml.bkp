@@ -1,0 +1,22 @@
+---
+- hosts: node 
+  become: true
+  become_user: root
+  gather_facts: yes
+  tasks:
+    - name: making file executable
+      copy:
+        src: /home/ansible/django/run-DC.sh
+        dest: /home/ansible/django/run-DC.sh
+        mode: u=rx,g=r,o=r
+      
+    - name: Running script docker-compose up 
+      shell: /home/ansible/django/run-DC.sh
+
+    - name: Check page returns a status 200
+      uri:
+        url: http://localhost:8000
+        return_content: yes
+      register: this
+      failed_when: "'DisallowedHost' not in this.content"
+
