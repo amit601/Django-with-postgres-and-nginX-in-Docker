@@ -22,4 +22,38 @@ To prepare infrastructure folowing are steps...
 ###	Due to self sign certificate, it will will test as failed. But in actual it is running. You cann verify from node itself.
 ###	run "curl -k http://localhost:8000" this will load the page successfully.
 
+I create this setup
+
+			----------------
+			|  PostgresDB  |
+			----------------
+			     /\
+			    /||\
+			     ||
+			     ||
+			     ||
+			     ||
+			    \||/
+			     \/
+			----------------		
+			|  Django APP  |
+			----------------
+                             /\ 
+                            /||\
+                             ||
+                             ||
+                             ||
+                             ||
+                            \||/
+                             \/
+			------------
+			|   nginX  |
+			------------
+
+
+PostgresDB is used to store data in backen for Django App. Nginx work as loadbalaancer and proxy server.
+
+###	Scale up or down the django server container.
+ 
+	To scale up the server, just edit the file start-DC.sh. In  command sudo docker-compose up -d add --scale djangoapp=N (N = number of nodes you want)
 
